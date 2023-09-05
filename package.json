@@ -1,7 +1,7 @@
 {
   "name": "origamimd",
   "version": "0.0.1",
-  "description": "Origami Markdown Ebook reader",
+  "description": "A mix between Obsidian md and Kindle.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
