@@ -1,15 +1,27 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path')
 
+const ASSETS_PATH = app.isPackaged ?
+	path.join(process.resourcesPath, 'assets') :
+	path.join(app.getAppPath(), `public${path.sep}assets`);
+
+
 function departure()
 {
 	const windown = new BrowserWindow({
 		width: 800,
 		height: 600,
-		preload: path.join(__dirname, 'preload.js')
+		preload: path.join(__dirname, 'preload.js'),
+		titleBarStyle: 'hidden',
+		titleBarOverlay: {
+			color: '#040D12',
+			symbolColor: '#93B1A6',
+			height: 30
+		}		
 	});
 
-	windown.loadFile('src/index.html');
+	windown.removeMenu();
+	windown.loadFile('src/home/index.html');
 }
 
 app.on('ready', departure);

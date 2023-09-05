@@ -11,5 +11,11 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^26.1.0"
-  }
+  },
+  "extraResources": [
+      {
+        "from": "./res",
+        "to": "assets"
+      }
+  ]
 }

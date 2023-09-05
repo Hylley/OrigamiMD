@@ -1,0 +1,22 @@
+#content
+{
+	display: flex;
+	flex-direction: row;
+}
+
+#bookshelf, #resume_reading
+{
+	max-height: 100%;
+}
+
+#bookshelf
+{
+	background: red;
+	flex: 1;
+}
+
+#resume_reading
+{
+	width: 30%;
+	background: purple;
+}

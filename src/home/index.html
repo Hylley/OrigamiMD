@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+
+		<link rel="stylesheet" href="../reset.css"      >
+		<link rel="stylesheet" href="../ouftit-font.css">
+		
+		<link rel="stylesheet" href="index.css"   >
+		<link rel="stylesheet" href="navbar.css"  >
+		<link rel="stylesheet" href="content.css" >
+
+		<title>Origami</title>
+	</head>
+
+	<body>
+		<div id="navbar">
+			<img id="ori" src="file:///res/ori.png" />
+			<img id="search_index_icon" src="file:///res/icons/search-interface-symbol.png"/>
+			<input type="text" id="search_box" placeholder="Search bookshelf..." />
+		</div>
+		<div id="content">
+			<div id="bookshelf">
+				A
+			</div>
+			<div id="resume_reading">
+				<h1>Resume where you left off...</h1>
+			</div>
+		</div>
+	</body>
+</html>

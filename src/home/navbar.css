@@ -1,0 +1,29 @@
+#navbar
+{
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	/* background: #040D12; */
+}
+
+#navbar #ori
+{
+	max-height: 70%;
+	margin: 0 15px 0 15px;
+}
+
+#navbar #search_index_icon
+{
+	max-height: 30%;
+	margin: 0 2% 0 5%;
+}
+
+#navbar #search_box
+{
+	all: unset;
+	-webkit-app-region: no-drag;
+	color: #93B1A6;
+	font-size: 16pt;
+	font-family: Outfit;
+	font-weight: lighter;
+}
