@@ -1,0 +1,15 @@
+{
+  "name": "origamimd",
+  "version": "0.0.1",
+  "description": "A mix between ObsidianMD and Kindle.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start" : "electron ."
+  },
+  "author": "Hydley Ferreira",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^26.1.0"
+  }
+}
