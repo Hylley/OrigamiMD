@@ -6,27 +6,141 @@
 		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
 
 		<link rel="stylesheet" href="../reset.css"      >
-		<link rel="stylesheet" href="../ouftit-font.css">
-		
-		<link rel="stylesheet" href="index.css"   >
-		<link rel="stylesheet" href="navbar.css"  >
-		<link rel="stylesheet" href="content.css" >
+		<link rel="stylesheet" href="../scroll.css">
+		<!-- <link rel="stylesheet" href="../ouftit-font.css">
+		<link rel="stylesheet" href="../rosarivo-font.css">
+		 -->
+		<link rel="stylesheet" href="index.css">
+		<link rel="stylesheet" href="navbar.css">
+
+		<link rel="stylesheet" href="bookshelf.css">
+		<link rel="stylesheet" href="sidebar.css">
+
+		 <script src="./navbar.js" defer></script>
 
 		<title>Origami</title>
 	</head>
 
 	<body>
 		<div id="navbar">
-			<img id="ori" src="file:///res/ori.png" />
-			<img id="search_index_icon" src="file:///res/icons/search-interface-symbol.png"/>
+			<img id="ori" src="../../res/ori.png" />
+			<img id="search_index_icon" src="../../res/icons/search-interface-symbol.png"/>
 			<input type="text" id="search_box" placeholder="Search bookshelf..." />
 		</div>
 		<div id="content">
 			<div id="bookshelf">
-				A
+				<div id="navigator">
+					<button id="append">+</button>
+					<div id="tabs">
+						<button class="tab selected">All</button>
+						<!-- <button class="tab">Drama</button>
+						<button class="tab">Comedy</button>
+						<button class="tab">Science</button> -->
+						<button class="tab">...</button>
+					</div>
+				</div>
+				<div id="library">
+					<button class="book">
+						<div class="cover">
+							<img class="cover_img" src="../../res/tmp/cover.png"/>
+							<input type="range" min="0" max="100" value="50" class="cover_slider" disabled />
+						</div>
+						<h2 class="book_title">O Diário de Anne Frank</h2>
+						<h3 class="book_author">Anne Frank</h2>
+					</button>
+					<button class="book">
+						<div class="cover">
+							<img class="cover_img" src="../../res/tmp/cover.png"/>
+							<input type="range" min="0" max="100" value="50" class="cover_slider" disabled />
+						</div>
+						<h2 class="book_title">O Diário de Anne Frank</h2>
+						<h3 class="book_author">Anne Frank</h2>
+					</button>
+					<button class="book">
+						<div class="cover">
+							<img class="cover_img" src="../../res/tmp/cover.png"/>
+							<input type="range" min="0" max="100" value="50" class="cover_slider" disabled />
+						</div>
+						<h2 class="book_title">O Diário de Anne Frank</h2>
+						<h3 class="book_author">Anne Frank</h2>
+					</button>
+					<button class="book">
+						<div class="cover">
+							<img class="cover_img" src="../../res/tmp/cover.png"/>
+							<input type="range" min="0" max="100" value="50" class="cover_slider" disabled />
+						</div>
+						<h2 class="book_title">O Diário de Anne Frank</h2>
+						<h3 class="book_author">Anne Frank</h2>
+					</button>
+					<button class="book">
+						<div class="cover">
+							<img class="cover_img" src="../../res/tmp/cover.png"/>
+							<input type="range" min="0" max="100" value="50" class="cover_slider" disabled />
+						</div>
+						<h2 class="book_title">O Diário de Anne Frank</h2>
+						<h3 class="book_author">Anne Frank</h2>
+					</button>
+					<button class="book">
+						<div class="cover">
+							<img class="cover_img" src="../../res/tmp/cover.png"/>
+							<input type="range" min="0" max="100" value="50" class="cover_slider" disabled />
+						</div>
+						<h2 class="book_title">O Diário de Anne Frank</h2>
+						<h3 class="book_author">Anne Frank</h2>
+					</button>
+					<button class="book">
+						<div class="cover">
+							<img class="cover_img" src="../../res/tmp/cover.png"/>
+							<input type="range" min="0" max="100" value="50" class="cover_slider" disabled />
+						</div>
+						<h2 class="book_title">O Diário de Anne Frank</h2>
+						<h3 class="book_author">Anne Frank</h2>
+					</button>
+					<button class="book">
+						<div class="cover">
+							<img class="cover_img" src="../../res/tmp/cover.png"/>
+							<input type="range" min="0" max="100" value="50" class="cover_slider" disabled />
+						</div>
+						<h2 class="book_title">O Diário de Anne Frank</h2>
+						<h3 class="book_author">Anne Frank</h2>
+					</button>
+					<button class="book">
+						<div class="cover">
+							<img class="cover_img" src="../../res/tmp/cover.png"/>
+							<input type="range" min="0" max="100" value="50" class="cover_slider" disabled />
+						</div>
+						<h2 class="book_title">O Diário de Anne Frank</h2>
+						<h3 class="book_author">Anne Frank</h2>
+					</button>
+					<button class="book">
+						<div class="cover">
+							<img class="cover_img" src="../../res/tmp/cover.png"/>
+							<input type="range" min="0" max="100" value="50" class="cover_slider" disabled />
+						</div>
+						<h2 class="book_title">O Diário de Anne Frank</h2>
+						<h3 class="book_author">Anne Frank</h2>
+					</button>
+					<button class="book">
+						<div class="cover">
+							<img class="cover_img" src="../../res/tmp/cover.png"/>
+							<input type="range" min="0" max="100" value="50" class="cover_slider" disabled />
+						</div>
+						<h2 class="book_title">O Diário de Anne Frank</h2>
+						<h3 class="book_author">Anne Frank</h2>
+					</button>
+				</div>
 			</div>
-			<div id="resume_reading">
-				<h1>Resume where you left off...</h1>
+			<div id="sidebar">
+				<div id="resume">
+					<h1>Resume where you left off...</h1>
+				</div>
+				<div id="quote">
+					<p id="text">
+						Adormeço com a ideia tola de querer ser diferente do que sou, ou de que
+						não sou como queria ser. E de que faço tudo ao contrário.
+					</p>
+					<p id="author">— Anne Frank</p>
+				</div>
 			</div>
 		</div>
 	</body>

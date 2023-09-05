@@ -7,10 +7,50 @@ body
 	flex-direction: column;
 
 	padding: 1%;
+
+	overflow-x: hidden;
 }
 
 #navbar
 {
 	-webkit-app-region: drag;
 	height: 70px;
+}
+
+#content
+{
+	display: flex;
+	flex-direction: row;
+	padding: 4%;
+}
+
+#content button
+{
+	all: unset;
+	cursor: pointer;
+}
+
+#bookshelf, #sidebar
+{
+	max-height: 100%;
+}
+
+#bookshelf
+{
+	flex: 1;
+}
+
+#sidebar
+{
+	width: 30%;
+	margin-left: 30px;
+}
+
+@media (max-width:950px)
+{
+	#content
+	{
+		display: flex;
+		flex-direction: column;
+	}
 }

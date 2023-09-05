@@ -3,7 +3,17 @@
 	display: flex;
 	align-items: center;
 	flex-direction: row;
+	transition: .5s;
 	/* background: #040D12; */
+}
+
+.stick
+{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background: #040D12;
+	z-index: 4;
 }
 
 #navbar #ori
@@ -25,5 +35,5 @@
 	color: #93B1A6;
 	font-size: 16pt;
 	font-family: Outfit;
-	font-weight: lighter;
+	font-weight: light;
 }

@@ -8,6 +8,13 @@
 @font-face {
 	font-family: "Outfit";
 	src: url("file:///res/fonts/Outfit-Light.ttf") format("truetype");
-	font-weight: lighter;
+	font-weight: light;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Outfit";
+	src: url("file:///res/fonts/Outfit-Bold.ttf") format("truetype");
+	font-weight: bold;
 	font-style: normal;
 }

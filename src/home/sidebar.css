@@ -1,0 +1,61 @@
+#sidebar
+{
+	display: flex;
+	flex-direction: column;
+}
+
+#sidebar #resume
+{
+
+}
+
+#sidebar #quote
+{
+
+}
+
+#sidebar #quote #text
+{
+	color: #5C8374;
+	font-size: 25px;
+	font-family: Rosarivo;
+}
+
+#sidebar #quote #text::before {
+	content: "\201C";
+	font-size: 60px;
+	position: relative;
+	line-height: 0;
+	top: 20px;
+	z-index: 2;
+	color: #93B1A6;
+}
+
+#sidebar #quote #author
+{
+	color: #183D3D;
+	font-size: 30px;
+	margin-top: 10px;
+	font-family: Rosarivo;
+}
+
+h1
+{
+	font-family: Outfit;
+	font-weight: light;
+	font-size: 30px;
+	color: #93B1A6;
+
+	font-family: Outfit;
+}
+
+@media (max-width:950px)
+{
+	#sidebar
+	{
+		height: 100%;
+		width: 80%;
+
+		display: grid;
+	}
+}

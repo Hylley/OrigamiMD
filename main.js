@@ -1,15 +1,10 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path')
 
-const ASSETS_PATH = app.isPackaged ?
-	path.join(process.resourcesPath, 'assets') :
-	path.join(app.getAppPath(), `public${path.sep}assets`);
-
-
 function departure()
 {
 	const windown = new BrowserWindow({
-		width: 800,
+		width: 1100,
 		height: 600,
 		preload: path.join(__dirname, 'preload.js'),
 		titleBarStyle: 'hidden',

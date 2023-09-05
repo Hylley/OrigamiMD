@@ -1,0 +1,13 @@
+@font-face {
+	font-family: "Rosarivo";
+	src: url("file:///res/fonts/Rosarivo-Regular.otf") format("opentype");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "Rosarivo";
+	src: url("file:///res/fonts/Rosarivo-Italic.otf") format("opentype");
+	font-weight: normal;
+	font-style: italic;
+}
