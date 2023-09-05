@@ -58,6 +58,11 @@
 
 .book .cover .cover_img
 {
+	width: 100%;
+}
+
+/* .book .cover .cover_img
+{
 	width: 90%;
 }
 
@@ -66,44 +71,7 @@
 	width: 5%;
 	padding: 2%;
 	-webkit-appearance: slider-vertical;
-}
-
-..book .cover .cover_slider {
-	-webkit-appearance: none;
-	appearance: none;
-	width: 100%;
-	height: 10px;
-	border: none;
-	border-radius: 5px;
-	background-color: #ecf0f3;
-	box-shadow: inset -2px -2px 8px rgba(255, 255, 255, 1),
-				inset -2px -2px 12px rgba(255, 255, 255, 0.5),
-				inset 2px 2px 4px rgba(255, 255, 255, 0.1),
-				inset 2px 2px 8px rgba(0, 0, 0, .3);
-	outline: none;
-}
-.book .cover .cover_slider::-webkit-slider-thumb {
-	-webkit-appearance: none;
-	appearance: none;
-	width: 20px;
-	height: 20px;
-	border: none;
-	border-radius: 50%;
-	box-shadow: -2px -2px 8px rgba(255, 255, 255, 1),
-				-2px -2px 12px rgba(255, 255, 255, 0.5),
-				inset 2px 2px 4px rgba(255, 255, 255, 0.1),
-				2px 2px 8px rgba(0, 0, 0, .3);
-	background-color: #f252a5;
-}
-.value {
-	position: absolute;
-	top: 20px;
-	left: 10px;
-	width: 125px;
-	height: 10px;
-	border-radius: 5px 0 0 5px;
-	background-color: #f252a5;
-}
+} */
 
 .book .book_title
 {

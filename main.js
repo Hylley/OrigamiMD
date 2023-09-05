@@ -9,7 +9,7 @@ function departure()
 		preload: path.join(__dirname, 'preload.js'),
 		titleBarStyle: 'hidden',
 		titleBarOverlay: {
-			color: '#040D12',
+			color: 'rgba(0,0,0,0)',
 			symbolColor: '#93B1A6',
 			height: 30
 		}		
