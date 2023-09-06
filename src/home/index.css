@@ -53,4 +53,15 @@ body
 		display: flex;
 		flex-direction: column;
 	}
+
+	#content #bookshelf
+	{
+		order: 2;
+	}
+
+	#content #sidebar
+	{
+		order: 1;
+		margin-bottom: 80px;
+	}
 }
