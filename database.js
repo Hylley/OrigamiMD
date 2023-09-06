@@ -13,9 +13,8 @@ function get_db()
 {
 	return new sqlite3.Database(path_to_file, sqlite3.OPEN_CREATE | sqlite3.OPEN_READWRITE);
 }
-const db = get_db()
 
-db.run(`
+get_db().run(`
 	CREATE TABLE IF NOT EXISTS bookshelf (
 		book_id  TEXT NOT NULL PRIMARY KEY,
 		path     TEXT NOT NULL,
@@ -25,8 +24,6 @@ db.run(`
 		progress INT  NOT NULL,
 		seed     TEXT NOT NULL
 	);
-`);
-
-db.close();
+`).close();
 
 module.exports = { get_db };

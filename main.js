@@ -46,7 +46,27 @@ ipcMain.on('open-reader', (event, book_id) => {
 	});
 });
 
+ipcMain.on('open-import', (event) => {
+	const import_window = new BrowserWindow({
+		width: 800,
+		height: 600,
+		// titleBarStyle: 'hidden',
+		minimizable: false,
+		maximizable: false,
+		resizable:   false,
+		parent: window,
+		autoHideMenuBar: true,
+		// parent: window,
+		webPreferences : {
+			preload: path.join(__dirname, '/src/pages/import/js/preload.js')
+		}
+	});
 
+	import_window.loadFile(`src/pages/import/index.html`);
+	import_window.once('ready-to-show', () => {
+		import_window.show();
+	});
+});
 
 /* -------------------- OTHERS --------- */
 
