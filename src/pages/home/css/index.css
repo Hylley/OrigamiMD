@@ -1,6 +1,6 @@
 body
 {
-	background: linear-gradient(75deg, #040D12 0%, #183D3D 250%);
+	background: linear-gradient(-75deg, #040D12 0%, #183D3D 250%);
 	background-attachment: fixed;
 	
 	display: flex;

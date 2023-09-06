@@ -19,8 +19,8 @@
 }
 
 ::-webkit-scrollbar-track {
-	background-color: #0f2828;
-	background-image: url("../res/scroll.png");
+	background-color: #040D12;
+	background-image: url("../../res/scroll.png");
 	background-repeat: repeat-y;
 	background-size: contain;
 }

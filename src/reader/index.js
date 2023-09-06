@@ -1,1 +1,0 @@
-const book_id = window.process.argv[window.process.argv.length - 1];
