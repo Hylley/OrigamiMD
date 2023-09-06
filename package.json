@@ -21,13 +21,7 @@
     "electron": "^26.1.0"
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
-  },
-  "config" : {
-    "forge" : {
-      "packagerConfig" : {
-        "icon" : "./res/ori"
-      }
-    }
+    "electron-squirrel-startup": "^1.0.0",
+    "sqlite3": "^5.1.6"
   }
 }

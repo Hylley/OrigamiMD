@@ -2,9 +2,6 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const database = require('./database.js');
 const path = require('path');
 
-/* -------------------- DATABASE ------- */
-database.checkAvaliability();
-
 /* -------------------- ELECTRON ------- */
 let window;
 
