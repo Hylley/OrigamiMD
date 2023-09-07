@@ -1,0 +1,28 @@
+#drop_here
+{
+	all: unset;
+	cursor: pointer;
+	height: 100%;
+	border: 5px dashed #93b1a6;
+	border-radius: 5%;
+	text-align: center;
+	width: 100%;
+}
+
+#drop_here img
+{
+	width: 50%;
+}
+
+#drop_here h1
+{
+	color: #93B1A6;
+	font-family: Outfit;
+	font-size: 30px;
+}
+
+#drop_here span
+{
+	color: #5C8374;
+	font-size: 20px;
+}

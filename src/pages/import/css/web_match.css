@@ -1,0 +1,36 @@
+#web_match
+{
+	display: flex;
+	flex-direction: column;
+}
+
+#web_match #search_engine
+{
+	height: 30px;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+#web_match #search_box
+{
+	all: unset;
+	color: #93B1A6;
+	font-size: 16pt;
+	font-family: Outfit;
+	font-weight: light;
+	flex: 1;
+}
+
+#web_match #search_index_icon
+{
+	max-height: 70%;
+	margin: 0 2% 0 5%;
+}
+
+#web_match #search_results
+{
+	flex: 1;
+	overflow-y: auto;
+}

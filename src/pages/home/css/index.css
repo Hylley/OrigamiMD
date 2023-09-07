@@ -6,8 +6,6 @@ body
 	display: flex;
 	flex-direction: column;
 
-	padding: 1%;
-
 	overflow-x: hidden;
 }
 
@@ -21,7 +19,7 @@ body
 {
 	display: flex;
 	flex-direction: row;
-	padding: 4%;
+	padding: 5%;
 }
 
 #content button

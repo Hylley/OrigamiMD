@@ -1,51 +1,14 @@
 body
 {
-	margin: 2%;
-	background: #183D3D;
+	padding: 30px;
+	background: #040D12;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	grid-template-rows: 100%;
+	grid-gap: 20px;
 }
 
-#file_info, #web_match
+#web_match, #file
 {
-	height: 100vh;
-}
-
-#file_info
-{
-
-}
-
-#web_match
-{
-	display: flex;
-	flex-direction: column;
-}
-
-#web_match #search_engine
-{
-	height: 30px;
-	width: 100%;
-}
-
-#web_match #search_box
-{
-	all: unset;
-	color: #93B1A6;
-	font-size: 16pt;
-	font-family: Outfit;
-	font-weight: light;
-	width: 50%;
-}
-
-#web_match #search_index_icon
-{
-	max-height: 70%;
-	margin: 0 2% 0 5%;
-}
-
-#web_match #search_results
-{
-	flex: 1;
+	height: calc(100vh - 60px);
 }
