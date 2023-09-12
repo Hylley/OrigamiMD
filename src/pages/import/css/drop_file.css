@@ -9,6 +9,11 @@
 	width: 100%;
 }
 
+.file_in_drop_space
+{
+	border: 5px solid #93b1a6 !important;
+}
+
 #drop_here img
 {
 	width: 50%;
