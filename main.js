@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, dialog, BrowserWindow, ipcMain } = require('electron');
 const database = require('./database.js');
 const path = require('path');
 
@@ -65,6 +65,18 @@ ipcMain.on('open-import', (event) => {
 	import_window.loadFile(`src/pages/import/index.html`);
 	import_window.once('ready-to-show', () => {
 		import_window.show();
+	});
+
+	ipcMain.on('open-file-drop-window-dialog', (event) => {
+		dialog.showOpenDialog(
+			{
+				title : 'Select a file...',
+				properties: ['openFile'],
+				filters: [
+					{ name: 'Supported files', extensions: ['epub', 'ori', 'txt', 'pdf'] }
+				]
+			}
+		).then(result => { import_window.webContents.send('chooseFilePath', result); });
 	});
 });
 
