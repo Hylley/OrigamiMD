@@ -34,3 +34,22 @@
 	flex: 1;
 	overflow-y: auto;
 }
+
+#web_match #file_import
+{
+	all: unset;
+	text-align: center;
+	height: 10%;
+	border-radius: 9999px;
+	background: #183D3D;
+	color: #93B1A6;
+	font-family: Outfit;
+	font-size: 20px;
+	cursor: pointer;
+	transition: .3s;
+}
+
+#web_match #file_import:hover
+{
+	background: #5C8374;
+}

@@ -1,15 +1,34 @@
+const fs = require('fs');
 document.getElementById('drop_here').addEventListener('click', () => window.electronAPI.openDialogWindow('showOpenDialog', { title: 'Select a file' }) );
+
+const drop_here = document.getElementById('drop_here');
+const file_info = document.getElementById('info')
 
 // Both files dropped or opened by dialog window will reach here.
 function loadBook(file_path)
 {
-	if(!['epub', 'ori', 'txt', 'pdf'].includes(getExtension(file_path))) return;
-	document.getElementById('search_results').innerHTML = file_path;
+	const file_extension = getExtension(file_path);
+	if(!['epub', 'ori', 'txt', 'pdf'].includes(file_extension)) return;
+	
+	drop_here.classList.add('hide');
+	file_info.classList.remove('hide');
+	document.getElementById('file_name').textContent = file_path;
+	document.getElementById('file_icon').src = `../../../res/icons/${file_extension}.png`;
+	document.getElementById('file_import').classList.remove('hide');
+
+	fs.stat(path, (err, stats) => {
+		if(err)
+		{
+			console.log(err);
+			return;
+		}
+		
+		document.getElementById('file_size_value').textContent = `${stats.size / 2048} MB`;
+	})
 }
 
 /* --------------------FILE DROP IMPLEMENTATION -------------------------- */
 
-const drop_here = document.getElementById('drop_here');
 
 drop_here.addEventListener('drop', (event) => {
 	event.preventDefault();

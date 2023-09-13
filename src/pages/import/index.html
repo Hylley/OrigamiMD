@@ -9,7 +9,7 @@
 
 	<link rel="stylesheet" href="css/index.css">
 	<link rel="stylesheet" href="css/web_match.css">
-	<link rel="stylesheet" href="css/drop_file.css">
+	<link rel="stylesheet" href="css/file.css">
 
 	<script src="js/index.js" defer></script>
 
@@ -21,8 +21,16 @@
 			<img src="../../../res/icons/upload.png" />
 			<h1>Drop file here<br/><span>(or click to open explorer)</span></h1>
 		</button>
-		<div id="info">
-
+		<div id="info" class="hide">
+			<div id="general_info">
+				<img id="file_icon" src="../../../res/icons/epub.png"/>
+				<h1 id="file_name"></h1>
+			</div>
+			<hr />
+			<div id="details">
+				<h3 class="detail" id="file_size"><span class="key">Size:</span><span id="file_size_value" class="value"></span></h3>
+				<!-- <h3 class="detail" id="page_count"><span class="key">Pages:</span><span id="page_count_value" class="value"></span></h3> -->
+			</div>
 		</div>
 	</div>
 	<div id="web_match">
@@ -32,6 +40,7 @@
 		</div>
 		<div id="search_results">
 		</div>
+		<button id="file_import" class="hide">Import</button>
 	</div>
 </body>
 </html>
