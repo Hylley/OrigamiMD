@@ -1,4 +1,3 @@
-const fs = require('fs');
 document.getElementById('drop_here').addEventListener('click', () => window.electronAPI.openDialogWindow('showOpenDialog', { title: 'Select a file' }) );
 
 const drop_here = document.getElementById('drop_here');

@@ -76,6 +76,14 @@
 	flex: 1;
 }
 
+#info #details
+{
+	color: #93B1A6;
+	font-family: Outfit;
+	text-align: justify;
+	text-justify: inter-word;
+}
+
 #info #details .detail
 {
 	font-family: Outfit;
