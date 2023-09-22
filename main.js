@@ -50,14 +50,15 @@ ipcMain.on('open-import', (event) => {
 	const import_window = new BrowserWindow({
 		width: 800,
 		height: 600,
-		// titleBarStyle: 'hidden',
 		minimizable: false,
 		maximizable: false,
 		resizable:   false,
 		parent: window,
 		autoHideMenuBar: true,
-		// parent: window,
+		modal: true,
 		webPreferences : {
+			sandbox: false,
+			nodeIntegration: true,
 			preload: path.join(__dirname, '/src/pages/import/js/preload.js')
 		}
 	});
@@ -69,6 +70,7 @@ ipcMain.on('open-import', (event) => {
 
 	ipcMain.on('open-file-drop-window-dialog', (event) => {
 		dialog.showOpenDialog(
+			import_window,
 			{
 				title : 'Select a file...',
 				properties: ['openFile'],
@@ -76,7 +78,7 @@ ipcMain.on('open-import', (event) => {
 					{ name: 'Supported files', extensions: ['epub', 'ori', 'txt', 'pdf'] }
 				]
 			}
-		).then(result => { import_window.webContents.send('chooseFilePath', result); });
+		).then(result => {import_window.webContents.send('chooseFilePath', result); });
 	});
 });
 
