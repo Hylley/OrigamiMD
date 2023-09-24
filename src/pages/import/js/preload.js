@@ -1,5 +1,6 @@
-const { contextBridge, ipcRenderer } = require('electron');
+const { dialog, contextBridge, ipcRenderer } = require('electron');
 const fs = require('fs');
+const database = require('../../../../database');
 
 function getExtension(filename)
 {
@@ -18,8 +19,28 @@ function getFileData(path)
 	return {
 		path : path,
 		extension : file_stats.isFile() ? getExtension(path) : '.',
-		size : file_stats.size
+		size : file_stats.size,
+		seed : ''
 	}
+}
+
+function import_book(file)
+{
+	db = database.get_db();
+	db.run(`
+		INSERT INTO bookshelf (path, seed, scroll_path, scroll_value, progress) VALUES (
+			?,
+			?,
+			'./',
+			0,
+			0
+		);
+	`, [file.path, file.seed],
+	(error) => {
+		document.write(error);
+		db.close();
+		ipcRenderer.send('close-import');
+	});
 }
 
 contextBridge.exposeInMainWorld('electronAPI', {
@@ -29,5 +50,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
 			callback(result);
 		})
 	},
-	getFileData: getFileData
+	getFileData: getFileData,
+	import_book : import_book
 })

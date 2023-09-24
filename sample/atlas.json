@@ -1,0 +1,32 @@
+{
+	"cover": "cover.png",
+	"title": "Sample",
+	"subtitle": "a guide for life",
+	"structure":
+	{
+		"head":
+		{
+			"Title page": "title.md",
+			"Dedication": "",
+			"Epigraph": "",
+			"Acknowledgments": ""
+		},
+		"body": ["chapter1.md", "chapter2.md"],
+		"foot":
+		{
+			"Bibliography": "",
+			"About the author": ""
+		}
+	},
+	"layout":
+	{
+		"centralize_head_content": false,
+		"override_style":
+		{
+			"*":    {},
+			"head": {},
+			"body": {},
+			"foot": {}
+		}
+	}
+}

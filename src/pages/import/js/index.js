@@ -1,5 +1,6 @@
 const drop_here = document.getElementById('drop_here');
-const file_info = document.getElementById('info')
+const file_info = document.getElementById('info');
+const import_button = document.getElementById('file_import');
 
 // Both files dropped or opened by dialog window will reach here.
 function loadBook(file)
@@ -11,12 +12,14 @@ function loadBook(file)
 	document.getElementById('file_name').textContent = file.path;
 	document.getElementById('file_icon').src = `../../../res/icons/${file.extension}.png`;
 	document.getElementById('file_size_value').textContent = `${(file.size / 1024).toFixed(2)} KB`;
-	document.getElementById('file_import').classList.remove('hide');
+	
+	import_button.classList.remove('hide');
+	import_button.addEventListener('click', () => { window.electronAPI.import_book(file); import_button.classList.add('hide'); })
 }
 
 /* --------------------FILE DROP IMPLEMENTATION -------------------------- */
 drop_here.addEventListener('click', () => {
-	window.electronAPI.openDialogWindow('showOpenDialog', { title: 'Select a file' })
+	window.electronAPI.openDialogWindow();
 });
 
 drop_here.addEventListener('drop', (event) => {

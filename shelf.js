@@ -1,56 +1,120 @@
-// const fs = require("fs");
+const fs = require("fs");
+const unzipper = require('unzipper');
+const database = require('./database.js')
 
-// class Book
-// {
-// 	constructor(path)
-// 	{
-// 		this.path = path;
-// 	}
+class Book
+{
+	constructor(path)
+	{
+		this.path = path;
+	}
 
-// 	file_info()
-// 	{
-// 		let info = {
-// 			size : 0
-// 		};
+	file_info()
+	{
+		let info = {
+			size : 0
+		};
 		
-// 		fs.stat(path, (err, stats) => {
-// 			if(err)
-// 			{
-// 				console.log(err);
-// 				return;
-// 			}
+		fs.stat(path, (err, stats) => {
+			if(err)
+			{
+				console.log(err);
+				return;
+			}
 			
-// 			info.size = stats.size;
-// 		})
+			info.size = stats.size;
+		})
 		
-// 		return info;
-// 	}
+		return info;
+	}
 
-// 	page_count() { return 1; }
-// 	header() { return {}; }
-// 	structure() { return {}; }
-// }
+	get_data()
+	{
+		return fs.readFileSync(this.path);
+	}
 
-// function get_book(path, extension)
-// {
-// 	return Book(path);
+	header() { return {}; } // Header -> Return display info: cover (buffer), cover image extension, title and subtitle;
+	progress() { return 0; }
+}
 
-// 	switch(extension)
-// 	{
-// 		case 'epub':
+class ORI extends Book
+{
+	constructor(path)
+	{
+		super(path);
+	}
 
-// 			break;
-// 		case 'pdf':
+	search_for(path, callback)
+	{
+		const file_data = super.get_data();
+		const file_stream = require('stream').Readable.from(file_data);
+		const file_buffer = [];
+		
+		file_stream.pipe(unzipper.Parse()).on('entry', (entry) => {
+			const file_name = entry.path;
+			const file_type = entry.type;
 
-// 			break;
-// 		case 'ori':
+			if (file_type !== 'File' || file_name !== path)
+			{
+				entry.autodrain();
+				return;
+			}
 
-// 			break;
-// 		case 'txt':
+			entry.on('data', (chunk) => file_buffer.push(chunk));
+			entry.on('end', () => callback(Buffer.concat(file_buffer)));
+		});
+	}
+
+	header(callback)
+	{
+		this.search_for('atlas.json', (result) => {
+			const atlas = JSON.parse(result);
+			this.search_for(`res/${atlas.cover}`, (result) => callback({ title: atlas.title, subtitle: atlas.subtitle, cover_buffer: result }));
+		});
+	}
+}
+
+function getExtension(filename)
+{
+	let a = filename.split(".");
+	if( a.length === 1 || ( a[0] === "" && a.length === 2 ) ) {
+		return "c";
+	}
+
+	return a.pop();
+}
+
+function get_book(path)
+{
+	switch(getExtension(path))
+	{
+		case 'epub':
+
+			break;
+		case 'pdf':
+
+			break;
+		case 'ori':
+			return new ORI(path);
+			break;
+		case 'txt':
 			
-// 			break;
-// 		default: break;
-// 	}
-// }
+			break;
+		default: break;
+	}
+}
 
-// module.exports = { get_book };
+function get_shelf(callback)
+{
+	const db = database.get_db();
+
+	db.all(`
+		SELECT * FROM bookshelf
+	`, (err, table) => {
+		callback(table);
+	});
+
+	db.close();
+}
+
+module.exports = { get_book, get_shelf };

@@ -14,16 +14,30 @@ function get_db()
 	return new sqlite3.Database(path_to_file, sqlite3.OPEN_CREATE | sqlite3.OPEN_READWRITE);
 }
 
-get_db().run(`
-	CREATE TABLE IF NOT EXISTS bookshelf (
-		book_id  TEXT NOT NULL PRIMARY KEY,
-		path     TEXT NOT NULL,
-		title    TEXT NOT NULL,
-		author   TEXT NOT NULL,
-		pages    INT  NOT NULL,
-		progress INT  NOT NULL,
-		seed     TEXT NOT NULL
-	);
-`).close();
+function init()
+{
+	const db = get_db();
+
+	db.run(`
+		CREATE TABLE IF NOT EXISTS bookshelf (
+			book_id      INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+			path         TEXT    NOT NULL UNIQUE,
+			seed         TEXT,
+			scroll_path  TEXT    NOT NULL,
+			scroll_value INTEGER NOT NULL,
+			progress     INTEGER NOT NULL
+		);
+	`);
+
+	db.run(`
+		CREATE TABLE IF NOT EXISTS preferences (
+			key   TEXT NOT NULL,
+			value TEXT NOT NULL
+		);
+	`);
+
+	db.close();
+}
+init();
 
 module.exports = { get_db };

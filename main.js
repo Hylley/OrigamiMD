@@ -1,6 +1,17 @@
 const { app, dialog, BrowserWindow, ipcMain } = require('electron');
 const database = require('./database.js');
+const shelf = require('./shelf.js')
 const path = require('path');
+
+shelf.get_shelf((books) => {
+	for(book_info of books)
+	{
+		const book = shelf.get_book(book_info.path);
+		book.header((result) => {
+			console.log(result);
+		})
+	}
+})
 
 /* -------------------- ELECTRON ------- */
 let window;
@@ -8,7 +19,10 @@ let window;
 app.on('ready', () => {
 	window = new BrowserWindow({
 		width: 1100,
+		minWidth: 600,
 		height: 600,
+		minHeight: 600,
+		backgroundColor: '#040D12',
 		titleBarStyle: 'hidden',
 		titleBarOverlay: {
 			color: 'rgba(0,0,0,0)',
@@ -49,10 +63,10 @@ ipcMain.on('open-reader', (event, book_id) => {
 ipcMain.on('open-import', (event) => {
 	const import_window = new BrowserWindow({
 		width: 800,
-		height: 600,
+		height: 500,
+		resizable:   false,
 		minimizable: false,
 		maximizable: false,
-		resizable:   false,
 		parent: window,
 		autoHideMenuBar: true,
 		modal: true,
@@ -68,6 +82,7 @@ ipcMain.on('open-import', (event) => {
 		import_window.show();
 	});
 
+	let file_drop_dialog_already_opened = false; // Prevent multiple fires of the event, in case of missclick.
 	ipcMain.on('open-file-drop-window-dialog', (event) => {
 		dialog.showOpenDialog(
 			import_window,
@@ -78,8 +93,12 @@ ipcMain.on('open-import', (event) => {
 					{ name: 'Supported files', extensions: ['epub', 'ori', 'txt', 'pdf'] }
 				]
 			}
-		).then(result => {import_window.webContents.send('chooseFilePath', result); });
+		).then(result => import_window.webContents.send('chooseFilePath', result));
 	});
+
+	ipcMain.on('close-import', (event) => {
+		import_window.close();
+	})
 });
 
 /* -------------------- OTHERS --------- */
