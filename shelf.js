@@ -1,8 +1,6 @@
 const fs = require("fs");
 const unzipper = require('unzipper');
 const database = require('./database.js');
-const { resolve } = require("path");
-const { rejects } = require("assert");
 
 class Book
 {
