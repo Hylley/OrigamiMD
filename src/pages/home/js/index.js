@@ -21,18 +21,22 @@ window.electronAPI.sendShelfData((event, shelf) =>
 		const book_element = document.createElement('button');
 		book_element.classList.add('book');
 
-		const b64 = book.cover_buffer.toString('base64');
-
 		book_element.innerHTML = `
 			<div class="cover">
-				<img class="cover_img" src="data:image/png;base64,${b64}"/>
+			<img class="cover_img" src="data:image/png;base64,${toBase64(book.cover_buffer).toString()}"/>
 			</div>
 			<h2 class="book_title">${book.title}</h2>
 			<h3 class="book_author">${book.authors.join(', ')}</h3>
 		`
 		book_element.addEventListener('click', () => window.electronAPI.openReader(book.id.toString()) );
 		
-
 		document.getElementById('library').appendChild(book_element);
 	}
 })
+
+function toBase64(arr) {
+	//arr = new Uint8Array(arr)// if it's an ArrayBuffer
+	return btoa(
+	   arr.reduce((data, byte) => data + String.fromCharCode(byte), '')
+	);
+}
