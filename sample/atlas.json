@@ -1,6 +1,7 @@
 {
 	"cover": "cover.png",
 	"title": "Sample",
+	"authors": ["Origami Markdown"],
 	"subtitle": "a guide for life",
 	"structure":
 	{

@@ -18,7 +18,7 @@ class Book
 		fs.stat(path, (err, stats) => {
 			if(err)
 			{
-				console.log(err);
+				console.error(err);
 				return;
 			}
 			
@@ -64,7 +64,11 @@ class ORI extends Book
 
 				entry.on('data', (chunk) => file_buffer.push(chunk));
 				entry.on('end', () => resolve(Buffer.concat(file_buffer)));
-			});
+				entry.on('error', (err) => reject(err));
+			})
+			.on('error', (err) => {
+				reject(err);
+			});;
 		});
 	}
 
@@ -72,7 +76,7 @@ class ORI extends Book
 	{
 		const atlas = JSON.parse(await this.search_for('atlas.json'));
 		const cover_buffer = await this.search_for(`res/${atlas.cover}`);
-		return { title: atlas.title, subtitle: atlas.subtitle, cover_buffer: cover_buffer };
+		return { title: atlas.title, subtitle: atlas.subtitle, authors: atlas.authors, cover_buffer: cover_buffer };
 	}
 }
 
@@ -134,6 +138,8 @@ async function get_shelf()
 				const book = get_book(table[i].path);
 				data[i] = await book.header();
 				data[i]['progress'] = table[i].progress;
+				data[i]['id'] = table[i].book_id;
+				data[i]['seed'] = table[i].seed;
 			}
 
 			resolve(data);

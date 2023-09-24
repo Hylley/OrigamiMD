@@ -3,11 +3,6 @@ const database = require('./database.js');
 const shelf = require('./shelf.js')
 const path = require('path');
 
-shelf.get_shelf().then((data) =>
-{
-	console.log(data);
-})
-
 /* -------------------- ELECTRON ------- */
 let window;
 
@@ -30,7 +25,8 @@ app.on('ready', () => {
 	});
 
 	window.removeMenu();
-	window.loadFile('src/pages/home/index.html');
+	window.loadFile('src/pages/home/index.html')
+	.then(async () => { window.webContents.send('sendShelfData', await shelf.get_shelf()); });
 });
 
 ipcMain.on('open-reader', (event, book_id) => {

@@ -8,7 +8,7 @@
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make"
-  },
+  },  
   "author": "Hydley Ferreira",
   "license": "MIT",
   "devDependencies": {
