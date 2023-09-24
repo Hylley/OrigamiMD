@@ -1,6 +1,8 @@
 const fs = require("fs");
 const unzipper = require('unzipper');
-const database = require('./database.js')
+const database = require('./database.js');
+const { resolve } = require("path");
+const { rejects } = require("assert");
 
 class Book
 {
@@ -44,33 +46,35 @@ class ORI extends Book
 		super(path);
 	}
 
-	search_for(path, callback)
+	search_for(path)
 	{
-		const file_data = super.get_data();
-		const file_stream = require('stream').Readable.from(file_data);
-		const file_buffer = [];
-		
-		file_stream.pipe(unzipper.Parse()).on('entry', (entry) => {
-			const file_name = entry.path;
-			const file_type = entry.type;
+		return new Promise((resolve, reject) => 
+		{
+			const file_data = super.get_data();
+			const file_stream = require('stream').Readable.from(file_data);
+			const file_buffer = [];
+			
+			file_stream.pipe(unzipper.Parse()).on('entry', (entry) => {
+				const file_name = entry.path;
+				const file_type = entry.type;
 
-			if (file_type !== 'File' || file_name !== path)
-			{
-				entry.autodrain();
-				return;
-			}
+				if (file_type !== 'File' || file_name !== path)
+				{
+					entry.autodrain();
+					return;
+				}
 
-			entry.on('data', (chunk) => file_buffer.push(chunk));
-			entry.on('end', () => callback(Buffer.concat(file_buffer)));
+				entry.on('data', (chunk) => file_buffer.push(chunk));
+				entry.on('end', () => resolve(Buffer.concat(file_buffer)));
+			});
 		});
 	}
 
-	header(callback)
+	async header()
 	{
-		this.search_for('atlas.json', (result) => {
-			const atlas = JSON.parse(result);
-			this.search_for(`res/${atlas.cover}`, (result) => callback({ title: atlas.title, subtitle: atlas.subtitle, cover_buffer: result }));
-		});
+		const atlas = JSON.parse(await this.search_for('atlas.json'));
+		const cover_buffer = await this.search_for(`res/${atlas.cover}`);
+		return { title: atlas.title, subtitle: atlas.subtitle, cover_buffer: cover_buffer };
 	}
 }
 
@@ -104,17 +108,40 @@ function get_book(path)
 	}
 }
 
-function get_shelf(callback)
+/*
+	Output exammple:
+[
+	{
+		title: 'Sample',
+		subtitle: 'a guide for life',
+		cover_buffer: <Buffer 89 50 4e 47 0d 0a ... more bytes>,
+		progress: 0
+	},
+	...
+]
+*/
+async function get_shelf()
 {
-	const db = database.get_db();
+	return new Promise((resolve, reject) => 
+	{
+		const db = database.get_db();
+		db.all(`
+			SELECT * FROM bookshelf
+		`, async (err, table) => {
+			if(err) reject(err);
+			
+			const data = [];
+			for(i in table)
+			{
+				const book = get_book(table[i].path);
+				data[i] = await book.header();
+				data[i]['progress'] = table[i].progress;
+			}
 
-	db.all(`
-		SELECT * FROM bookshelf
-	`, (err, table) => {
-		callback(table);
-	});
-
-	db.close();
+			resolve(data);
+		});
+		db.close();
+	})
 }
 
 module.exports = { get_book, get_shelf };

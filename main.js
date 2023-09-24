@@ -3,14 +3,9 @@ const database = require('./database.js');
 const shelf = require('./shelf.js')
 const path = require('path');
 
-shelf.get_shelf((books) => {
-	for(book_info of books)
-	{
-		const book = shelf.get_book(book_info.path);
-		book.header((result) => {
-			console.log(result);
-		})
-	}
+shelf.get_shelf().then((data) =>
+{
+	console.log(data);
 })
 
 /* -------------------- ELECTRON ------- */
